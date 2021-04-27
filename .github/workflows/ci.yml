@@ -19,102 +19,111 @@ jobs:
       matrix:
         include:
           - toolset: gcc-4.7
+            gcov: gcov-4.7
             cxxstd: "03,11"
             os: ubuntu-16.04
             install: g++-4.7
           - toolset: gcc-4.8
+            gcov: gcov-4.8
             cxxstd: "03,11"
             os: ubuntu-16.04
             install: g++-4.8
           - toolset: gcc-4.9
+            gcov: gcov-4.9
             cxxstd: "03,11"
             os: ubuntu-16.04
             install: g++-4.9
           - toolset: gcc-5
+            gcov: gcov-5
             cxxstd: "03,11,14,1z"
             os: ubuntu-16.04
           - toolset: gcc-6
+            gcov: gcov-6
             cxxstd: "03,11,14,1z"
             os: ubuntu-16.04
             install: g++-6
           - toolset: gcc-7
+            gcov: gcov-7
             cxxstd: "03,11,14,17"
             os: ubuntu-18.04
           - toolset: gcc-8
+            gcov: gcov-8
             cxxstd: "03,11,14,17,2a"
             os: ubuntu-18.04
             install: g++-8
           - toolset: gcc-9
+            gcov: gcov-9
             cxxstd: "03,11,14,17,2a"
             os: ubuntu-18.04
           - toolset: gcc-10
+            gcov: gcov-10
             cxxstd: "03,11,14,17,2a"
             os: ubuntu-18.04
-          - toolset: clang
-            compiler: clang++-3.5
-            cxxstd: "03,11"
-            os: ubuntu-16.04
-            install: clang-3.5
-          - toolset: clang
-            compiler: clang++-3.6
-            cxxstd: "03,11,14"
-            os: ubuntu-16.04
-            install: clang-3.6
-          - toolset: clang
-            compiler: clang++-3.7
-            cxxstd: "03,11,14"
-            os: ubuntu-16.04
-            install: clang-3.7
-          - toolset: clang
-            compiler: clang++-3.8
-            cxxstd: "03,11,14"
-            os: ubuntu-16.04
-            install: clang-3.8
-          - toolset: clang
-            compiler: clang++-3.9
-            cxxstd: "03,11,14"
-            os: ubuntu-16.04
-            install: clang-3.9
-          - toolset: clang
-            compiler: clang++-4.0
-            cxxstd: "03,11,14"
-            os: ubuntu-16.04
-            install: clang-4.0
-          - toolset: clang
-            compiler: clang++-5.0
-            cxxstd: "03,11,14,1z"
-            os: ubuntu-16.04
-            install: clang-5.0
-          - toolset: clang
-            compiler: clang++-6.0
-            cxxstd: "03,11,14,17"
-            os: ubuntu-18.04
-            install: clang-6.0
-          - toolset: clang
-            compiler: clang++-7
-            cxxstd: "03,11,14,17"
-            os: ubuntu-18.04
-            install: clang-7
-          - toolset: clang
-            compiler: clang++-8
-            cxxstd: "03,11,14,17,2a"
-            os: ubuntu-20.04
-            install: clang-8
-          - toolset: clang
-            compiler: clang++-9
-            cxxstd: "03,11,14,17,2a"
-            os: ubuntu-20.04
-          - toolset: clang
-            compiler: clang++-10
-            cxxstd: "03,11,14,17,2a"
-            os: ubuntu-20.04
-          - toolset: clang
-            compiler: clang++-11
-            cxxstd: "03,11,14,17,2a"
-            os: ubuntu-20.04
-          - toolset: clang
-            cxxstd: "03,11,14,17,2a"
-            os: macos-10.15
+#           - toolset: clang
+#             compiler: clang++-3.5
+#             cxxstd: "03,11"
+#             os: ubuntu-16.04
+#             install: clang-3.5
+#           - toolset: clang
+#             compiler: clang++-3.6
+#             cxxstd: "03,11,14"
+#             os: ubuntu-16.04
+#             install: clang-3.6
+#           - toolset: clang
+#             compiler: clang++-3.7
+#             cxxstd: "03,11,14"
+#             os: ubuntu-16.04
+#             install: clang-3.7
+#           - toolset: clang
+#             compiler: clang++-3.8
+#             cxxstd: "03,11,14"
+#             os: ubuntu-16.04
+#             install: clang-3.8
+#           - toolset: clang
+#             compiler: clang++-3.9
+#             cxxstd: "03,11,14"
+#             os: ubuntu-16.04
+#             install: clang-3.9
+#           - toolset: clang
+#             compiler: clang++-4.0
+#             cxxstd: "03,11,14"
+#             os: ubuntu-16.04
+#             install: clang-4.0
+#           - toolset: clang
+#             compiler: clang++-5.0
+#             cxxstd: "03,11,14,1z"
+#             os: ubuntu-16.04
+#             install: clang-5.0
+#           - toolset: clang
+#             compiler: clang++-6.0
+#             cxxstd: "03,11,14,17"
+#             os: ubuntu-18.04
+#             install: clang-6.0
+#           - toolset: clang
+#             compiler: clang++-7
+#             cxxstd: "03,11,14,17"
+#             os: ubuntu-18.04
+#             install: clang-7
+#           - toolset: clang
+#             compiler: clang++-8
+#             cxxstd: "03,11,14,17,2a"
+#             os: ubuntu-20.04
+#             install: clang-8
+#           - toolset: clang
+#             compiler: clang++-9
+#             cxxstd: "03,11,14,17,2a"
+#             os: ubuntu-20.04
+#           - toolset: clang
+#             compiler: clang++-10
+#             cxxstd: "03,11,14,17,2a"
+#             os: ubuntu-20.04
+#           - toolset: clang
+#             compiler: clang++-11
+#             cxxstd: "03,11,14,17,2a"
+#             os: ubuntu-20.04
+#           - toolset: clang
+#             cxxstd: "03,11,14,17,2a"
+#             os: macos-10.15
 
     runs-on: ${{matrix.os}}
 
@@ -207,3 +216,22 @@ jobs:
         run: |
           cd ../boost-root
           b2 -j3 libs/%LIBRARY%/test toolset=${{matrix.toolset}} cxxstd=${{matrix.cxxstd}} address-model=${{matrix.addrmd}} variant=debug,release
+
+      - name: Test cxxstd=latest coverage=on
+        run: |
+          cd ../boost-root
+          # b2 -j3 libs/%LIBRARY%/test toolset=${{matrix.toolset}} cxxstd=${{matrix.cxxstd}} address-model=${{matrix.addrmd}} variant=debug,release
+          # Merging histogram's example and core's example:
+          b2 -j3 libs/%LIBRARY%/test//all toolset=${{matrix.toolset}} cxxstd=latest address-model=${{matrix.addrmd}}
+          
+          # cd libs/histogram
+          # ## don't compile examples in coverage build, coverage must come from tests alone
+          # ../../b2 $B2_OPTS toolset=gcc-8 cxxstd=latest coverage=on test//all
+  
+      - name: Process coverage data
+        env:
+          GCOV: ${{ matrix.gcov }}
+        run: |
+          cd libs/histogram
+          # GCOV=gcov-8 tools/cov.sh
+          GCOV=gcov-8 tools/cov.sh
