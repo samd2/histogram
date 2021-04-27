@@ -161,10 +161,28 @@ jobs:
         run: |
           echo "using ${{matrix.toolset}} : : ${{matrix.compiler}} ;" > ~/user-config.jam
 
-      - name: Run tests
+# - name: Run tests
+#   run: |
+#     cd ../boost-root
+#     ./b2 -j3 libs/$LIBRARY/test toolset=${{matrix.toolset}} cxxstd=${{matrix.cxxstd}} variant=debug,release
+
+      - name: Test cxxstd=latest coverage=on
         run: |
           cd ../boost-root
-          ./b2 -j3 libs/$LIBRARY/test toolset=${{matrix.toolset}} cxxstd=${{matrix.cxxstd}} variant=debug,release
+          # "merging" histogram's example and core's example:
+          ./b2 -j3 libs/$LIBRARY/test//all toolset=${{matrix.toolset}} cxxstd=latest coverage=on
+          
+          # cd libs/histogram
+          # ## don't compile examples in coverage build, coverage must come from tests alone
+          # ../../b2 $B2_OPTS toolset=gcc-8 cxxstd=latest coverage=on test//all
+  
+      - name: Process coverage data
+        env:
+          GCOV: ${{ matrix.gcov }}
+        run: |
+          cd libs/histogram
+          # GCOV=gcov-8 tools/cov.sh
+          tools/cov.sh
 
   windows:
     strategy:
@@ -216,22 +234,3 @@ jobs:
         run: |
           cd ../boost-root
           b2 -j3 libs/%LIBRARY%/test toolset=${{matrix.toolset}} cxxstd=${{matrix.cxxstd}} address-model=${{matrix.addrmd}} variant=debug,release
-
-      - name: Test cxxstd=latest coverage=on
-        run: |
-          cd ../boost-root
-          # b2 -j3 libs/%LIBRARY%/test toolset=${{matrix.toolset}} cxxstd=${{matrix.cxxstd}} address-model=${{matrix.addrmd}} variant=debug,release
-          # Merging histogram's example and core's example:
-          b2 -j3 libs/%LIBRARY%/test//all toolset=${{matrix.toolset}} cxxstd=latest address-model=${{matrix.addrmd}}
-          
-          # cd libs/histogram
-          # ## don't compile examples in coverage build, coverage must come from tests alone
-          # ../../b2 $B2_OPTS toolset=gcc-8 cxxstd=latest coverage=on test//all
-  
-      - name: Process coverage data
-        env:
-          GCOV: ${{ matrix.gcov }}
-        run: |
-          cd libs/histogram
-          # GCOV=gcov-8 tools/cov.sh
-          GCOV=gcov-8 tools/cov.sh
