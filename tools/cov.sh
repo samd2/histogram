@@ -33,13 +33,16 @@ chmod 755 ~/.local/bin/gcov_for_clang.sh
 echo "Checking env"
 env
 
+echo "Checking for llvm-cov-11"
+which llvm-cov-11 || true
+
 # --rc lcov_branch_coverage=1 doesn't work on travis
 # LCOV="${LCOV_DIR}/bin/lcov --gcov-tool=${GCOV} --rc lcov_branch_coverage=1"
 LCOV="${LCOV_DIR}/bin/lcov --gcov-tool=${GCOV}"
 
 echo "starting first run of lcov"
 # collect raw data
-$LCOV --base-directory `pwd` \
+$LCOV --base-directory `pwd`/../../ \
   --directory `pwd`/../../bin.v2/libs/histogram/test \
   --capture --output-file coverage.info
 
