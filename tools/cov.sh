@@ -1,4 +1,7 @@
-#!/bin/sh
+#!/bin/bash
+
+set -ex
+
 # must be executed in project root folder
 
 # Copyright Hans Dembinski 2018-2019
@@ -32,6 +35,11 @@ LCOV="${LCOV_DIR}/bin/lcov --gcov-tool=${GCOV}"
 $LCOV --base-directory `pwd` \
   --directory `pwd`/../../bin.v2/libs/histogram/test \
   --capture --output-file coverage.info
+
+echo "done with first run of lcov"
+
+pwd
+ls -al
 
 # remove uninteresting entries
 $LCOV --extract coverage.info "*/boost/histogram/*" --output-file coverage.info
