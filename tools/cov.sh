@@ -18,7 +18,7 @@ if [ -z $GCOV ]; then
   done
 fi
 
-LCOV_VERSION="1.14"
+LCOV_VERSION="1.15"
 LCOV_DIR="tools/lcov-${LCOV_VERSION}"
 
 if [ ! -e $LCOV_DIR ]; then
