@@ -120,7 +120,7 @@ jobs:
         run: |
           cd ../boost-root
           # "merging" histogram's example and core's example:
-          ./b2 -j3 libs/$LIBRARY/test//all toolset=${{matrix.toolset}} cxxstd=latest coverage=on
+          ./b2 -j3 libs/$LIBRARY/test//all toolset=${{matrix.toolset}} cxxstd=${{matrix.cxxstd}} coverage=on
   
       - name: Process coverage data
         env:
