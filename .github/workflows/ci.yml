@@ -133,7 +133,6 @@ jobs:
             cxxstd: "03,11,14,17,2a"
             gcov: 'gcov'
             os: macos-10.15
-            install: llvm
 
     runs-on: ${{matrix.os}}
 
@@ -141,7 +140,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Install packages
-        if: matrix.install
+        if: startWith(matrix.os,'ubuntu') == true && matrix.install
         run: sudo apt install ${{matrix.install}}
 
       - name: Setup Boost
@@ -199,7 +198,7 @@ jobs:
       - uses: coverallsapp/github-action@v1.1.2
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          path-to-lcov: ../boost-root/libs/histogram/coverage.infoxx
+          path-to-lcov: ../boost-root/libs/histogram/coverage.info
 
 #   windows:
 #     strategy:
