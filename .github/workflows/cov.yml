@@ -76,7 +76,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Install packages
-        if: {{ startWith(matrix.os,'ubuntu') == true && matrix.install }}
+        if: matrix.install
         run: sudo apt install ${{matrix.install}}
 
       - name: Setup Boost
