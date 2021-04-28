@@ -195,6 +195,11 @@ jobs:
           # GCOV=gcov-8 tools/cov.sh
           tools/cov.sh
 
+      - uses: coverallsapp/github-action@v1.1.2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path-to-lcov: ../boost-root/libs/histogram/coverage.info
+
 #   windows:
 #     strategy:
 #       fail-fast: false
