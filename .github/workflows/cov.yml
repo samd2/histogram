@@ -68,7 +68,7 @@ jobs:
           # - toolset: clang
           - toolset: gcc-8
             cxxstd: "03,11,14,17,2a"
-            gcov: 'gcov'
+            gcov: gcov-8
             os: macos-10.15
 
     runs-on: ${{matrix.os}}
