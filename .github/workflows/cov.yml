@@ -65,7 +65,8 @@ jobs:
             llvm_cov_path: '/usr/bin/llvm-cov-11'
             cxxstd: "03,11,14,17,2a"
             os: ubuntu-20.04
-          - toolset: clang
+          # - toolset: clang
+          - toolset: gcc-8
             cxxstd: "03,11,14,17,2a"
             gcov: 'gcov'
             os: macos-10.15
@@ -120,7 +121,7 @@ jobs:
         run: |
           cd ../boost-root
           # "merging" histogram's example and core's example:
-          ./b2 -j3 libs/$LIBRARY/test//all toolset=${{matrix.toolset}} cxxstd=${{matrix.cxxstd}} coverage=on
+          ./b2 -j3 libs/$LIBRARY/test//all toolset=${{matrix.toolset}} cxxstd=latest coverage=on
   
       - name: Process coverage data
         env:
