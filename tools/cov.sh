@@ -28,9 +28,9 @@ if [ ! -e $LCOV_DIR ]; then
 fi
 
 if [ -n "$LLVM_COV_PATH" ]; then
-  ln -s $LLVM_COV_PATH /usr/bin/llvm-cov
+  sudo ln -s $LLVM_COV_PATH /usr/bin/llvm-cov
 else
-  ln -s /usr/bin/llvm-cov-11 /usr/bin/llvm-cov
+  sudo ln -s /usr/bin/llvm-cov-11 /usr/bin/llvm-cov
 fi
 
 mkdir -p ~/.local/bin
