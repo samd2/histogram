@@ -31,6 +31,10 @@ fi
 # LCOV="${LCOV_DIR}/bin/lcov --gcov-tool=${GCOV} --rc lcov_branch_coverage=1"
 LCOV="${LCOV_DIR}/bin/lcov --gcov-tool=${GCOV}"
 
+echo "Before first run of lcov. Observe test dir"
+
+ls -alR /home/runner/work/histogram/boost-root/libs/histogram/../../bin.v2/libs/histogram/test
+
 # collect raw data
 $LCOV --base-directory `pwd` \
   --directory `pwd`/../../bin.v2/libs/histogram/test \
@@ -40,6 +44,7 @@ echo "done with first run of lcov"
 
 pwd
 ls -al
+ls -alR /home/runner/work/histogram/boost-root/libs/histogram/../../bin.v2/libs/histogram/test
 
 # remove uninteresting entries
 $LCOV --extract coverage.info "*/boost/histogram/*" --output-file coverage.info
