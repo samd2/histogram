@@ -28,9 +28,9 @@ fi
 
 # For clang coverage
 if [ -n "$LLVM_COV_PATH" ]; then
-  sudo ln -s $LLVM_COV_PATH /usr/bin/llvm-cov
+  sudo ln -s $LLVM_COV_PATH /usr/bin/llvm-cov || true
 else
-  sudo ln -s /usr/bin/llvm-cov-11 /usr/bin/llvm-cov
+  sudo ln -s /usr/bin/llvm-cov-11 /usr/bin/llvm-cov || true
 fi
 
 mkdir -p ~/.local/bin
