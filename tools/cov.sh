@@ -27,24 +27,23 @@ if [ ! -e $LCOV_DIR ]; then
   cd ..
 fi
 
+mkdir -p ~/.local/bin
+echo -e '#!/bin/bash\nexec llvm-cov gcov "$@"' > ~/.local/bin/gcov_for_clang.sh
+chmod 755 ~/.local/bin/gcov_for_clang.sh
+echo "Checking env"
+env
+
 # --rc lcov_branch_coverage=1 doesn't work on travis
 # LCOV="${LCOV_DIR}/bin/lcov --gcov-tool=${GCOV} --rc lcov_branch_coverage=1"
 LCOV="${LCOV_DIR}/bin/lcov --gcov-tool=${GCOV}"
 
-echo "Before first run of lcov. Observe test dir"
-
-ls -alR /home/runner/work/histogram/boost-root/libs/histogram/../../bin.v2/libs/histogram/test
-
+echo "starting first run of lcov"
 # collect raw data
-$LCOV --base-directory `pwd`/../../ \
+$LCOV --base-directory `pwd` \
   --directory `pwd`/../../bin.v2/libs/histogram/test \
   --capture --output-file coverage.info
 
 echo "done with first run of lcov"
-
-pwd
-ls -al
-ls -alR /home/runner/work/histogram/boost-root/libs/histogram/../../bin.v2/libs/histogram/test
 
 # remove uninteresting entries
 $LCOV --extract coverage.info "*/boost/histogram/*" --output-file coverage.info
