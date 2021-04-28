@@ -104,32 +104,36 @@ jobs:
             gcov: 'gcov_for_clang.sh'
             cxxstd: "03,11,14,17"
             os: ubuntu-18.04
-            install: clang-7
+            install: clang-7 llvm
           - toolset: clang
             compiler: clang++-8
             gcov: 'gcov_for_clang.sh'
             cxxstd: "03,11,14,17,2a"
             os: ubuntu-20.04
-            install: clang-8
+            install: clang-8 llvm
           - toolset: clang
             compiler: clang++-9
             gcov: 'gcov_for_clang.sh'
             cxxstd: "03,11,14,17,2a"
             os: ubuntu-20.04
+            install: llvm
           - toolset: clang
             compiler: clang++-10
             gcov: 'gcov_for_clang.sh'
             cxxstd: "03,11,14,17,2a"
             os: ubuntu-20.04
+            install: llvm
           - toolset: clang
             compiler: clang++-11
             gcov: 'gcov_for_clang.sh'
             cxxstd: "03,11,14,17,2a"
             os: ubuntu-20.04
+            install: llvm
           - toolset: clang
             cxxstd: "03,11,14,17,2a"
             gcov: 'gcov'
             os: macos-10.15
+            install: llvm
 
     runs-on: ${{matrix.os}}
 
