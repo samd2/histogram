@@ -198,7 +198,7 @@ jobs:
       - uses: coverallsapp/github-action@v1.1.2
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          path-to-lcov: ../boost-root/libs/histogram/coverage.info
+          path-to-lcov: ../boost-root/libs/histogram/coverage.infoxx
 
 #   windows:
 #     strategy:

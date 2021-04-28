@@ -47,15 +47,21 @@ $LCOV --base-directory `pwd`/../../ \
   --capture --output-file coverage.info
 
 echo "done with first run of lcov"
+ls -al coverage.info
 
 # remove uninteresting entries
 $LCOV --extract coverage.info "*/boost/histogram/*" --output-file coverage.info
 
+echo "done with extraction"
+ls -al coverage.info
+
 if [ $1 ]; then
+  echo "Uploading to cpp-coveralls"
   # upload if on CI or when token is passed as argument
   which cpp-coveralls || echo "Error: you need to install cpp-coveralls"
   cpp-coveralls -l coverage.info -r ../.. -n -t $1
 elif [ ! $CI ]; then
+  echo "Generating html report"
   # otherwise generate html report
   $LCOV_DIR/bin/genhtml coverage.info --demangle-cpp -o coverage-report
 fi
