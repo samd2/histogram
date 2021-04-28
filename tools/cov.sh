@@ -28,7 +28,7 @@ if [ ! -e $LCOV_DIR ]; then
 fi
 
 mkdir -p ~/.local/bin
-echo -e '#!/bin/bash\nexec llvm-cov gcov "$@"' > ~/.local/bin/gcov_for_clang.sh
+echo -e '#!/bin/bash\nexec llvm-cov-11 gcov "$@"' > ~/.local/bin/gcov_for_clang.sh
 chmod 755 ~/.local/bin/gcov_for_clang.sh
 echo "Checking env"
 env
