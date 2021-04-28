@@ -120,15 +120,15 @@ jobs:
           - toolset: clang
             compiler: clang++-10
             gcov: 'gcov_for_clang.sh'
+            llvm_cov_path: '/usr/bin/llvm-cov-10'
             cxxstd: "03,11,14,17,2a"
             os: ubuntu-20.04
-            install: llvm
           - toolset: clang
             compiler: clang++-11
             gcov: 'gcov_for_clang.sh'
+            llvm_cov_path: '/usr/bin/llvm-cov-11'
             cxxstd: "03,11,14,17,2a"
             os: ubuntu-20.04
-            install: llvm-11
           - toolset: clang
             cxxstd: "03,11,14,17,2a"
             gcov: 'gcov'
@@ -189,6 +189,7 @@ jobs:
       - name: Process coverage data
         env:
           GCOV: ${{ matrix.gcov }}
+          LLVM_COV_PATH: ${{ matrix.llvm_cov_path }}
         run: |
           # cd libs/histogram
           cd ../boost-root/libs/histogram
