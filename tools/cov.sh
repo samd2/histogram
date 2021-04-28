@@ -36,8 +36,8 @@ echo "Before first run of lcov. Observe test dir"
 ls -alR /home/runner/work/histogram/boost-root/libs/histogram/../../bin.v2/libs/histogram/test
 
 # collect raw data
-$LCOV --base-directory `pwd` \
-  --directory `pwd`/bin.v2/libs/histogram/test \
+$LCOV --base-directory `pwd`/../../ \
+  --directory `pwd`/../../bin.v2/libs/histogram/test \
   --capture --output-file coverage.info
 
 echo "done with first run of lcov"

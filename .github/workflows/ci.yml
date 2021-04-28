@@ -181,7 +181,7 @@ jobs:
           GCOV: ${{ matrix.gcov }}
         run: |
           # cd libs/histogram
-          cd ../boost-root
+          cd ../boost-root/libs/histogram
           # GCOV=gcov-8 tools/cov.sh
           tools/cov.sh
 
